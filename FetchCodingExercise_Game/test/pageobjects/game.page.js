@@ -6,6 +6,7 @@ class GamePage extends Page {
     get btnResult () {return $("//div[@class='result']//button[@id='reset']");}
     get btnWeigh () {return $("#weigh");}
     get listWeighings () {return $("//div[@class='game-info']//ol");}
+    get coinsClass () {return $(".coins");}
 
     async getAllWeighingsListItemsText () {
         let list = await this.listWeighings;
@@ -17,6 +18,12 @@ class GamePage extends Page {
         let list = await this.listWeighings;
         let listItems  = await list.$$('li');
         return listItems.length;
+    }
+
+    async getNumberOfCoins () {
+        let coinsClass = await this.coinsClass;
+        let coinsItems  = await coinsClass.$$('button');
+        return coinsItems.length;
     }
 
     async setCellBowlValue(bowlSide, cellIndex, cellValue) {
